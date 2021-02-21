@@ -15,6 +15,7 @@
 		99A3E89B25DA448E00B989F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99A3E89925DA448E00B989F5 /* LaunchScreen.storyboard */; };
 		99A3E8A625DA448E00B989F5 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A3E8A525DA448E00B989F5 /* ToDoTests.swift */; };
 		99A3E8B125DA448E00B989F5 /* ToDoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A3E8B025DA448E00B989F5 /* ToDoUITests.swift */; };
+		99A3E8C225DA4BFF00B989F5 /* TaskWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A3E8C125DA4BFF00B989F5 /* TaskWriteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		99A3E8AC25DA448E00B989F5 /* ToDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A3E8B025DA448E00B989F5 /* ToDoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUITests.swift; sourceTree = "<group>"; };
 		99A3E8B225DA448E00B989F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99A3E8C125DA4BFF00B989F5 /* TaskWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskWriteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				99A3E89725DA448E00B989F5 /* Assets.xcassets */,
 				99A3E89925DA448E00B989F5 /* LaunchScreen.storyboard */,
 				99A3E89C25DA448E00B989F5 /* Info.plist */,
+				99A3E8C125DA4BFF00B989F5 /* TaskWriteViewController.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A3E89325DA448A00B989F5 /* ViewController.swift in Sources */,
+				99A3E8C225DA4BFF00B989F5 /* TaskWriteViewController.swift in Sources */,
 				99A3E88F25DA448A00B989F5 /* AppDelegate.swift in Sources */,
 				99A3E89125DA448A00B989F5 /* SceneDelegate.swift in Sources */,
 			);
