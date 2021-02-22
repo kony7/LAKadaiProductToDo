@@ -40,14 +40,18 @@ class ViewController: UIViewController, UITableViewDataSource {
            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
 
         //セル内の1番タグをつけたパーツにアクセス
-        let view = cell?.contentView.viewWithTag(1)
-            
-//        view.text = titleDaysArray[indexPath.row] as! String
+        let view = cell?.contentView.viewWithTag(1) as! UILabel
+        view.text = titleDaysArray[indexPath.row] as? String
+        
+        //!と?の違いは？
            
+        //このreturnの意味は？
         return cell!
         
            
        }
+    
+    //ボタンが押されたら押されたボタンの情報を渡して画面遷移
     
     //削除機能
     
