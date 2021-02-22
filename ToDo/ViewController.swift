@@ -12,9 +12,10 @@ class ViewController: UIViewController, UITableViewDataSource {
     //TableViewを宣言
     @IBOutlet var table: UITableView!
 
-    //TaskWriteViewControllerから情報を受け取るための配列を宣言
+    //この画面で使う各配列を宣言
     var taskArray: Array<Any>!
     var titleDaysArray: Array<Any>!
+    var theIndex: Int!
 
     override func viewDidLoad() {
         
@@ -22,6 +23,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Do any additional setup after loading the view.
         
         table.dataSource = self
+        
+        //配列にUserDefaultから内容を代入
         
         
     }
@@ -51,11 +54,30 @@ class ViewController: UIViewController, UITableViewDataSource {
            
        }
     
-    //ボタンが押されたら押されたボタンの情報を渡して画面遷移
+    //ボタンが押されたら画面遷移
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        theIndex = indexPath.row
+        
+        
+    }
+    
+    //画面遷移をするときにTaskWriteViewControllerに編集用の情報を渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+          if segue.identifier == "toTaskWrite"{
+            
+            //画面遷移を変数に入れる
+              let taskWriteViewController = segue.destination as! TaskWriteViewController
+            
+            //遷移先のindexにtheIndexを代入する
+            taskWriteViewController.index = self.theIndex
+          
+          }
+      }
     
     //削除機能
     
-    //編集機能
     
     //並べ替え機能
 

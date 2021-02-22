@@ -22,6 +22,9 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     //各タスクを入れる配列を宣言
     var titleDaysArray: Array<Any>!
     
+    //編集する配列要素を指定する番号を入れる変数を宣言
+    var index: Int!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -61,13 +64,12 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     }
     
     func performSegueToResult(){
-           
-        //配列の情報を渡す
         
         //画面遷移
            performSegue(withIdentifier: "buck", sender: nil)
            
        }
+    
     
     
     /*
