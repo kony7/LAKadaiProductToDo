@@ -9,8 +9,10 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    //TableViewを宣言
     @IBOutlet var table: UITableView!
-    
+
+    //TaskWriteViewControllerから情報を受け取るための配列を宣言
     var taskArray: Array<Any>!
     var titleDaysArray: Array<Any>!
 
@@ -20,24 +22,38 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Do any additional setup after loading the view.
         
         table.dataSource = self
-        table.delegate = self
+        
         
     }
     
+    //テーブルビューの設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //セル数の指定
            return  taskArray.count
-       }
-       
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        //"Cell"というIDのセルを取得
            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+
+        //セル内の1番タグをつけたパーツにアクセス
+        let view = cell?.contentView.viewWithTag(1)
+            
+//        view.text = titleDaysArray[indexPath.row] as! String
            
-           cell?.textLabel?.text = titleDaysArray[indexPath.row]
-           
-           cell?.imageView?.image = UIImage(named: titleDaysArray[indexPath.row])
-           
-           return cell!
+        return cell!
+        
            
        }
+    
+    //削除機能
+    
+    //編集機能
+    
+    //並べ替え機能
 
 }
 

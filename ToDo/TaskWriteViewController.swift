@@ -62,6 +62,9 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     
     func performSegueToResult(){
            
+        //配列の情報を渡す
+        
+        //画面遷移
            performSegue(withIdentifier: "buck", sender: nil)
            
        }
