@@ -13,8 +13,8 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var table: UITableView!
 
     //この画面で使う各配列を宣言
-    var taskArray: Array<Any>!
-    var titleDaysArray: Array<Any>!
+    var taskArray: [[String]]!
+    var titleDaysArray: [String]!
     var theIndex: Int!
 
     override func viewDidLoad() {
@@ -44,13 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource {
 
         //セル内の1番タグをつけたパーツにアクセス
         let view = cell?.contentView.viewWithTag(1) as! UILabel
-        view.text = titleDaysArray[indexPath.row] as? String
+        view.text = titleDaysArray[indexPath.row]
         
-        //!と?の違いは？
            
-        //このreturnの意味は？
+        //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
         return cell!
-        
            
        }
     
