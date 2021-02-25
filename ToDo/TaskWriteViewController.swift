@@ -82,7 +82,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         taskArray.append(titleDaysArray)
         
         //ユーザーデフォルトに保存
-        saveData.setValue(titleDaysArray, forKey: "small")
+//        saveData.setValue(titleDaysArray, forKey: "small")
         saveData.setValue(taskArray, forKey: "big")
         
         

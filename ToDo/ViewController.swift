@@ -54,10 +54,18 @@ class ViewController: UIViewController, UITableViewDataSource {
         //セル内の1番タグをつけたパーツにアクセス
         let view1 = cell?.contentView.viewWithTag(1) as! UILabel
         let view2 = cell?.contentView.viewWithTag(2) as! UILabel
-        let titleDaysArray = saveData.array(forKey: "small")
-        if let nonOptionalTitleDaysArray = titleDaysArray{
-            view1.text = nonOptionalTitleDaysArray[0] as! String
-            view2.text = nonOptionalTitleDaysArray[1] as! String
+//        let titleDaysArray = saveData.array(forKey: "small")
+        
+        let taskArray = saveData.array(forKey: "big")
+        if let nonOptionalTitleDaysArray = taskArray{
+            
+            //taskArrayの中から2要素はいてる配列を取り出し、その中の要素0と要素1をラベルに貼りたい
+            
+            let title = nonOptionalTitleDaysArray[indexPath.count [0]]
+            let days = nonOptionalTitleDaysArray[indexPath.count[1]]
+            
+            view1.text = title
+            view2.text = days
         }
        
         //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
@@ -93,6 +101,12 @@ class ViewController: UIViewController, UITableViewDataSource {
             }
           }
       }
+    
+    @IBAction func plus(){
+        
+        performSegue(withIdentifier: "toTaskWrite", sender: nil)
+        
+    }
     
     //削除機能
     
