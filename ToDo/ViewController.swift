@@ -16,8 +16,6 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet var table: UITableView!
 
     //この画面で使う各配列を宣言
-    var taskArray = [[String]]()
-    var titleDaysArray = [String]()
     var theIndex: Int? = nil
 
     override func viewDidLoad() {
@@ -28,14 +26,23 @@ class ViewController: UIViewController, UITableViewDataSource {
         table.dataSource = self
         
         
-        
     }
     
     //テーブルビューの設定
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //セル数の指定
-           return  taskArray.count
+        let taskArray = saveData.array(forKey: "big")
+        if let nonOptionalTaskArray = taskArray{
+            
+            return  nonOptionalTaskArray.count
+            
+        }else{
+            
+            return 0
+            
+        }
+           
         
     }
     
@@ -46,9 +53,11 @@ class ViewController: UIViewController, UITableViewDataSource {
 
         //セル内の1番タグをつけたパーツにアクセス
         let view = cell?.contentView.viewWithTag(1) as! UILabel
-        view.text = titleDaysArray[indexPath.row]
-        
-           
+        let titleDaysArray = saveData.array(forKey: "small")
+        if let nonOptionalTitleDaysArray = titleDaysArray{
+            view.text = nonOptionalTitleDaysArray[indexPath.row] as! String
+        }
+       
         //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
         return cell!
            
