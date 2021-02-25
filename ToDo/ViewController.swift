@@ -52,10 +52,12 @@ class ViewController: UIViewController, UITableViewDataSource {
            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
 
         //セル内の1番タグをつけたパーツにアクセス
-        let view = cell?.contentView.viewWithTag(1) as! UILabel
+        let view1 = cell?.contentView.viewWithTag(1) as! UILabel
+        let view2 = cell?.contentView.viewWithTag(2) as! UILabel
         let titleDaysArray = saveData.array(forKey: "small")
         if let nonOptionalTitleDaysArray = titleDaysArray{
-            view.text = nonOptionalTitleDaysArray[indexPath.row] as! String
+            view1.text = nonOptionalTitleDaysArray[0] as! String
+            view2.text = nonOptionalTitleDaysArray[1] as! String
         }
        
         //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
