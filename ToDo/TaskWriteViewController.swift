@@ -19,10 +19,10 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     var saveData: UserDefaults = UserDefaults.standard
     
     //各タスク配列を管理する全体の配列を宣言
-    var taskArray: [[String]]!
+    var taskArray: [[String]] = [[]]
     
     //各タスクを入れる配列を宣言
-    var titleDaysArray:[String]!
+    var titleDaysArray:[String] = []
     
     //編集モードの場合、配列要素を指定する番号を入れる変数を宣言
     var index: Int!
@@ -52,13 +52,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         
         //title配列にテキストフィールドの中身をappend
         let taskWriteTextFieldContent: String? = taskwriteTextField.text
-        if let nonOptionalCheck = taskWriteTextFieldContent{
-            
-            titleDaysArray.append(nonOptionalCheck)
-            
-            
-        }else{
-            
+        if taskWriteTextFieldContent == ""{
             let alert: UIAlertController = UIAlertController(title: "タスクが何かわかりません", message: "タイトルを入れてから保存してください", preferredStyle: .alert)
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler:{
@@ -70,8 +64,13 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(cancelAction)
             
             present(alert, animated: true, completion: nil)
+        }
+        else if let nonOptionalCheck = taskWriteTextFieldContent{
+            
+            titleDaysArray.append(nonOptionalCheck)
             
         }
+        
         //days配列に日付をappend
         let dateFomatter = DateFormatter()
         dateFomatter.dateFormat = "yyyy/mm/dd"
@@ -105,6 +104,19 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
            performSegue(withIdentifier: "buck", sender: nil)
            
        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "buck"{
+          
+          //画面遷移を変数に入れる
+            let viewController = segue.destination as! ViewController
+          
+          //遷移先のindexにtheIndexを代入する
+              viewController.saveData = self.saveData
+        }
+        
+    }
     
     
     

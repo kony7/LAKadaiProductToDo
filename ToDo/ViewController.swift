@@ -8,13 +8,16 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
+
+    //ユーザーデフォルトの宣言
+    var saveData: UserDefaults = UserDefaults.standard
     
     //TableViewを宣言
     @IBOutlet var table: UITableView!
 
     //この画面で使う各配列を宣言
-    var taskArray: [[String]]!
-    var titleDaysArray: [String]!
+    var taskArray = [[String]]()
+    var titleDaysArray = [String]()
     var theIndex: Int? = nil
 
     override func viewDidLoad() {
@@ -24,7 +27,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         table.dataSource = self
         
-        //配列にUserDefaultから内容を代入
         
         
     }

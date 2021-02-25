@@ -69,6 +69,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="table" destination="yOM-En-LVT" id="zeb-VN-WQu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,7 +120,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="taskwriteTextField" destination="XsN-r3-71h" id="fym-BM-4S0"/>
+                        <outlet property="taskwriteTextField" destination="XsN-r3-71h" id="xmO-Ft-VaV"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="buck" id="ido-Hx-XX7"/>
                     </connections>
                 </viewController>
