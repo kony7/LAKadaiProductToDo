@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     //この画面で使う各配列を宣言
     var taskArray: [[String]]!
     var titleDaysArray: [String]!
-    var theIndex: Int!
+    var theIndex: Int? = nil
 
     override func viewDidLoad() {
         
@@ -69,8 +69,15 @@ class ViewController: UIViewController, UITableViewDataSource {
               let taskWriteViewController = segue.destination as! TaskWriteViewController
             
             //遷移先のindexにtheIndexを代入する
-            taskWriteViewController.index = self.theIndex
-          
+            if theIndex == nil{
+                
+                return
+
+            }else{
+            
+                taskWriteViewController.index = self.theIndex!
+            
+            }
           }
       }
     

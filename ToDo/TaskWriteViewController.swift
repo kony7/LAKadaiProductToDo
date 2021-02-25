@@ -25,7 +25,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     var titleDaysArray:[String]!
     
     //編集モードの場合、配列要素を指定する番号を入れる変数を宣言
-    var index: Int = 0
+    var index: Int!
     
     override func viewDidLoad() {
         
@@ -33,17 +33,17 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         taskwriteTextField.delegate = self
         
         //もし編集モードであれば押したセルの内容をテキストフィールド&DataPickerに反映させる
-        if index >= 1{
-            
-            //テキストフィールドに表示
-            
-            //DatePickerに初期値を表す
-            
-        }else{
-            
-            return
-            
-        }
+//        if index >= 0{
+//
+//            //テキストフィールドに表示
+//
+//            //DatePickerに初期値を表す
+//
+//        }else{
+//
+//            return
+//
+//        }
 
         // Do any additional setup after loading the view.
     }
@@ -51,8 +51,27 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     @IBAction func save() {
         
         //title配列にテキストフィールドの中身をappend
-        titleDaysArray.append(taskwriteTextField.text!)
-        
+        let taskWriteTextFieldContent: String? = taskwriteTextField.text
+        if let nonOptionalCheck = taskWriteTextFieldContent{
+            
+            titleDaysArray.append(nonOptionalCheck)
+            
+            
+        }else{
+            
+            let alert: UIAlertController = UIAlertController(title: "タスクが何かわかりません", message: "タイトルを入れてから保存してください", preferredStyle: .alert)
+            
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel, handler:{
+                  // ボタンが押された時の処理を書く（クロージャ実装）
+                  (action: UIAlertAction!) -> Void in
+                  print("Cancel")
+              })
+            
+            alert.addAction(cancelAction)
+            
+            present(alert, animated: true, completion: nil)
+            
+        }
         //days配列に日付をappend
         let dateFomatter = DateFormatter()
         dateFomatter.dateFormat = "yyyy/mm/dd"
