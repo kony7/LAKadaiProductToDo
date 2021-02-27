@@ -19,36 +19,46 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     var saveData: UserDefaults = UserDefaults.standard
     
     //各タスク配列を管理する全体の配列を宣言
-    var taskArray: [[String]] = [[]]
+    var taskArray: [[String]] = []
     
     //各タスクを入れる配列を宣言
     var titleDaysArray:[String] = []
     
     //編集モードの場合、配列要素を指定する番号を入れる変数を宣言
-    var index: Int!
+    var index: Int = 0
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         taskwriteTextField.delegate = self
         
+        taskArray = saveData.array(forKey: "big") as! [[String]]
+//        titleDaysArray = saveData.array(forKey: "small") as! [String]
         //もし編集モードであれば押したセルの内容をテキストフィールド&DataPickerに反映させる
-//        if index >= 0{
-//
-//            //テキストフィールドに表示
-//
-//            //DatePickerに初期値を表す
-//
-//        }else{
-//
-//            return
-//
-//        }
+        if index >= 0{
+
+            //テキストフィールドに表示
+            taskwriteTextField.text = taskArray[index][0]
+
+            //DatePickerに初期値を表す
+//            let firstDate:String = taskArray[index][1]
+//            let dateFomatter = DateFormatter()
+//            dateFomatter.dateFormat = "yyyy/mm/dd"
+//            let datedate = dateFomatter.date(from:firstDate)
+//            datePicker.date = datedate!
+
+        }else{
+
+            return
+
+        }
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func save() {
+        
+       
         
         //title配列にテキストフィールドの中身をappend
         let taskWriteTextFieldContent: String? = taskwriteTextField.text
