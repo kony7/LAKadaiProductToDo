@@ -57,15 +57,20 @@ class ViewController: UIViewController, UITableViewDataSource {
 //        let titleDaysArray = saveData.array(forKey: "small")
         
         let taskArray = saveData.array(forKey: "big")
-        if let nonOptionalTitleDaysArray = taskArray{
+        if let nonOptionalTaskArray= taskArray{
             
             //taskArrayの中から2要素はいてる配列を取り出し、その中の要素0と要素1をラベルに貼りたい
+            let serialNumber:Int! = indexPath.row
             
-            let title = nonOptionalTitleDaysArray[indexPath.count [0]]
-            let days = nonOptionalTitleDaysArray[indexPath.count[1]]
-            
-            view1.text = title
-            view2.text = days
+            if let view1Content = nonOptionalTaskArray[serialNumber][0]{
+                if  let view2Content = nonOptionalTaskArray[serialNumber][1]{
+                    
+                   view1.text = view1Content
+                    view2.text = view2Content
+                    
+                }
+            }
+           
         }
        
         //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
