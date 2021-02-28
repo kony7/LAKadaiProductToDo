@@ -79,8 +79,8 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
             //taskArrayの中から2要素はいてる配列を取り出し、その中の要素0と要素1をラベルに貼りたい
             let serialNumber:Int! = indexPath.row
                     
-                   view1.text = taskArray[serialNumber][0]
-                    view2.text = taskArray[serialNumber][1]
+                view1.text = taskArray[serialNumber][0]
+                view2.text = taskArray[serialNumber][1]
        
         //このreturnの意味は？→関数自体が「どんなセル？」と聞いているのに対して、こんなセル！と返す意味のreturn
         return cell!
@@ -113,7 +113,8 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
     //削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         taskArray.remove(at: indexPath.row)
-//        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        UserDefaults.standard.set(taskArray, forKey: "big")
+        UserDefaults.standard.synchronize()
         table.reloadData()
         
     }
