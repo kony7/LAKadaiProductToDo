@@ -17,6 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     //この画面で使う各配列を宣言
     var theIndex: Int? = nil
+    
+    var taskArray:[[String]] = []
+    
 
     override func viewDidLoad() {
         
@@ -32,15 +35,15 @@ class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         //セル数の指定
-        let taskArray = saveData.array(forKey: "big")
-        if let nonOptionalTaskArray = taskArray{
-            
-            return  nonOptionalTaskArray.count
-            
+        taskArray = saveData.array(forKey: "big") as! [[String]]
+        if taskArray.count > 0{
+
+            return  taskArray.count
+
         }else{
-            
+
             return 0
-            
+
         }
            
         
@@ -68,30 +71,47 @@ class ViewController: UIViewController, UITableViewDataSource {
            
        }
     
-    //ボタンが押されたら画面遷移
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        theIndex = indexPath.row
-        
-        
+    //削除機能
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        taskArray.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
     }
     
+    //並べ替え機能
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let todo = taskArray[sourceIndexPath.row]
+        taskArray.remove(at: sourceIndexPath.row)
+        taskArray.insert(todo, at: destinationIndexPath.row)
+    }
+    
+    //ボタンが押されたら画面遷移
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//
+//    }
+    
     //画面遷移をするときにTaskWriteViewControllerに編集用の情報を渡す
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
           if segue.identifier == "toTaskWrite"{
+            
+            if let tableIndexPath = table.indexPathForSelectedRow{
+                
+                theIndex = tableIndexPath.row
+              
             
             //画面遷移を変数に入れる
               let taskWriteViewController = segue.destination as! TaskWriteViewController
             
             //遷移先のindexにtheIndexを代入する
-            if theIndex == nil{
-                
-                return
-
-            }else{
-            
-                taskWriteViewController.index = self.theIndex!
+                print(theIndex)
+                print("これがtheindex")
+                if let nonOptionalTheIndex = theIndex{
+                    print(nonOptionalTheIndex)
+                    print("これがアンラップしたtheindex")
+                taskWriteViewController.index = nonOptionalTheIndex
+                }
             
             }
           }
@@ -103,10 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
     }
     
-    //削除機能
-    
-    
-    //並べ替え機能
+
 
 }
 

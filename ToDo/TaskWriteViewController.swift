@@ -13,7 +13,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var taskwriteTextField: UITextField!
     
     //DatePickerの宣言
-    var datePicker: UIDatePicker!
+    @IBOutlet var datePicker: UIDatePicker!
     
     //ユーザーデフォルトの宣言
     var saveData: UserDefaults = UserDefaults.standard
@@ -25,31 +25,34 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     var titleDaysArray:[String] = []
     
     //編集モードの場合、配列要素を指定する番号を入れる変数を宣言
-    var index: Int = 0
+    var index: Int = -1
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         taskwriteTextField.delegate = self
         
-        taskArray = saveData.array(forKey: "big") as! [[String]]
-//        titleDaysArray = saveData.array(forKey: "small") as! [String]
+     
         //もし編集モードであれば押したセルの内容をテキストフィールド&DataPickerに反映させる
+        print(index)
+        print("がviewDidLoad時点のindex")
+        
         if index >= 0{
+            
+            taskArray = saveData.array(forKey: "big") as! [[String]]
 
             //テキストフィールドに表示
             taskwriteTextField.text = taskArray[index][0]
 
             //DatePickerに初期値を表す
-//            let firstDate:String = taskArray[index][1]
-//            let dateFomatter = DateFormatter()
-//            dateFomatter.dateFormat = "yyyy/mm/dd"
-//            let datedate = dateFomatter.date(from:firstDate)
-//            datePicker.date = datedate!
-
-        }else{
-
-            return
+            let firstDate:String = taskArray[index][1]
+            let dateFomatter = DateFormatter()
+            dateFomatter.dateFormat = "yyyy/MM/dd/HH:mm"
+            let datedate = dateFomatter.date(from:firstDate)
+            if let nonOptionalDateDate = datedate{
+            datePicker.date = nonOptionalDateDate
+            }
 
         }
 
@@ -57,8 +60,9 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func save() {
-        
        
+        print(index)
+        print("がsave時点のindex")
         
         //title配列にテキストフィールドの中身をappend
         let taskWriteTextFieldContent: String? = taskwriteTextField.text
@@ -83,16 +87,25 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         
         //days配列に日付をappend
         let dateFomatter = DateFormatter()
-        dateFomatter.dateFormat = "yyyy/mm/dd"
-        
-        let dateString = dateFomatter.string(from: Date())
+        dateFomatter.dateFormat = "yyyy/MM/dd/HH:mm"
+        let dateDate = datePicker.date
+        let dateString = dateFomatter.string(from: dateDate)
+        //日付をtitleDaysArrayにappend
         titleDaysArray.append(dateString)
         
+        
+        if index >= 0 {
+            
+        taskArray[index] = titleDaysArray
+            
+        }else{
+            
         //今回の配列を管理配列にappend
         taskArray.append(titleDaysArray)
+            
+        }
         
         //ユーザーデフォルトに保存
-//        saveData.setValue(titleDaysArray, forKey: "small")
         saveData.setValue(taskArray, forKey: "big")
         
         
@@ -122,7 +135,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
           //画面遷移を変数に入れる
             let viewController = segue.destination as! ViewController
           
-          //遷移先のindexにtheIndexを代入する
+          //遷移先のsaveDataにこっちのsavedateを代入する
               viewController.saveData = self.saveData
         }
         
