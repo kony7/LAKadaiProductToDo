@@ -56,13 +56,10 @@ class ViewController: UIViewController, UITableViewDataSource,UITableViewDelegat
         taskArray = saveData.array(forKey: "big") as! [[String]]
         if taskArray.count > 0{
             
-            print(taskArray.count)
-            print("taskArrayの数は上記の通り")
             return  taskArray.count
 
         }else{
             
-            print("taskArrayの数0")
             return 0
            
         }

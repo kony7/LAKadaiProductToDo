@@ -80,6 +80,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="search" destination="IrO-7m-wKs" id="I5X-Bn-aAM"/>
                         <outlet property="table" destination="yOM-En-LVT" id="zeb-VN-WQu"/>
                     </connections>
                 </viewController>
