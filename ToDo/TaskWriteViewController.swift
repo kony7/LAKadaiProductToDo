@@ -8,6 +8,8 @@
 import UIKit
 
 class TaskWriteViewController: UIViewController, UITextFieldDelegate {
+    
+    
 
     //テキストフィールドの宣言
     @IBOutlet var taskwriteTextField: UITextField!
@@ -38,10 +40,13 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         print(index)
         print("がviewDidLoad時点のindex")
         
-        if index >= 0{
+        if saveData.array(forKey:"big") == nil{
             
+        }else{
             taskArray = saveData.array(forKey: "big") as! [[String]]
-
+        }
+        
+        if index >= 0{
             //テキストフィールドに表示
             taskwriteTextField.text = taskArray[index][0]
 
@@ -54,15 +59,14 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
             datePicker.date = nonOptionalDateDate
             }
 
+        }else{
+            index = -1
         }
 
         // Do any additional setup after loading the view.
     }
     
     @IBAction func save() {
-       
-        print(index)
-        print("がsave時点のindex")
         
         //title配列にテキストフィールドの中身をappend
         let taskWriteTextFieldContent: String? = taskwriteTextField.text
@@ -93,6 +97,8 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
         //日付をtitleDaysArrayにappend
         titleDaysArray.append(dateString)
         
+        print(index)
+        print("条件分岐前のindexはこちら")
         
         if index >= 0 {
             
@@ -102,6 +108,7 @@ class TaskWriteViewController: UIViewController, UITextFieldDelegate {
             
         //今回の配列を管理配列にappend
         taskArray.append(titleDaysArray)
+        print(taskArray)
             
         }
         
